@@ -17,7 +17,7 @@ class AuthController extends Controller
             'password' => ['required', 'min:3', 'confirmed'],
         ]);
 
-        // Create user
+       
         $user = User::create($fields);
 
         // Log user in
@@ -35,7 +35,7 @@ class AuthController extends Controller
         'password' => ['required'],
     ]);
 
-    // Try to log in the user
+    
     if (Auth::attempt($fields, $request->remember)) {
         return redirect()->intended();
     } else {

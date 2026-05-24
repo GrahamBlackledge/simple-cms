@@ -17,7 +17,7 @@
                 <div class="relative grid place-items-center" x-data="{ open: false }">
                     {{-- Profile image button --}}
                     <button @click="open = !open" type="button" class="round-btn">
-                        <img src="{{ asset('img/profile.jpg') }}" alt="profile">
+                        <img src="{{ asset('img/avatar5.png') }}" alt="profile">
                     </button>
 
                     {{-- Dropdown menu --}}

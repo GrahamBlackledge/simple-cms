@@ -16,9 +16,11 @@ class PostFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
-        return [
-            //
-        ];
-    }
+        {
+            return [
+                'user_id' => 1,
+                'title' => fake()->sentence(),
+                'body' => fake()->paragraph(20),
+            ];
+        }
 }

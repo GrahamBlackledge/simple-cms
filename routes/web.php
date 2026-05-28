@@ -9,6 +9,10 @@ Route::redirect('/', 'posts');
 
 Route::resource('posts', PostController::class);
 
+Route::get('/logout', function () {
+    return redirect()->route('posts.index');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');

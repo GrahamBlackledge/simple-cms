@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // Create admin account
         $adminUser = User::updateOrCreate(
             ['email' => 'admin@example.com'],
             [
@@ -21,8 +22,11 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        // Create 5 fake/test users
         User::factory(5)->create();
 
+
+            //Create fake/test posts
         Post::factory(10)->create([
             'user_id' => $adminUser->id,
         ]);

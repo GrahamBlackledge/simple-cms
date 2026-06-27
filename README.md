@@ -8,14 +8,6 @@ The app allows users to register, log in, create image posts, edit their own pos
 
 A JavaScript CMS page has also been added. This page uses JavaScript `fetch()` requests to work with REST-style JSON API routes. It can load posts, create posts, delete posts, and show validation messages without needing a full page reload.
 
-## Admin Login
-
-Email: `admin@example.com`
-Password: `admin`
-
-The admin username is:
-
-Username: `admin`
 
 ## Setup
 

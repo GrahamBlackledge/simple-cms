@@ -14,4 +14,15 @@ export default defineConfig({
         }),
         tailwindcss(),
     ],
+
+    test: {
+        include: [
+            'tests/Unit/**/*.test.js',
+            'tests/unit/**/*.test.js',
+        ],
+        exclude: [
+            'tests/**/*.spec.js',
+            'node_modules/**',
+        ],
+    },
 });

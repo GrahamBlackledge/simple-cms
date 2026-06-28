@@ -1,5 +1,10 @@
 <x-layout>
-    <h1 class="title">Register a new account</h1>
+        <div class="section-heading text-center">
+            <h1 class="title">Create your Life Post account</h1>
+                <p class="page-subtitle">
+                    Start saving thoughts, images, and moments worth remembering.
+                </p>
+    </div>
 
     <div class="mx-auto max-w-screen-sm card">
         <form action="{{ route('register') }}" method="post">

@@ -9,44 +9,188 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-@layer components {
-    nav {
-        @apply p-4 max-w-screen-lg mx-auto flex items-center justify-between;
+@layer base {
+    body {
+        @apply antialiased;
     }
 
-    .round-btn {
-        @apply w-8 h-8 overflow-auto rounded-full bg-slate-100 focus:outline-none focus:ring-1 focus:ring-slate-100 focus:ring-offset-2 focus:ring-offset-slate-800;
+    h1,
+    h2,
+    h3 {
+        @apply tracking-tight;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+}
+
+@layer components {
+    /*
+    Layout / Navigation
+    */
+
+    nav {
+        @apply max-w-screen-xl mx-auto px-5 py-4 flex items-center justify-between;
+    }
+
+    .site-header {
+        @apply bg-white/90 backdrop-blur border-b border-slate-200 shadow-sm;
+    }
+
+    .brand-link {
+        @apply flex items-center gap-3 text-slate-950 hover:opacity-80 transition;
+    }
+
+    .brand-mark {
+    @apply w-11 h-11 rounded-2xl bg-white shadow-md ring-1 ring-slate-200 grid place-items-center font-serif text-3xl font-bold;
+    color: #315C3B;
+    }
+
+    .brand-text {
+        @apply leading-tight;
+    }
+
+    .brand-name {
+        @apply block text-lg font-extrabold text-slate-950;
+    }
+
+    .brand-tagline {
+    @apply block text-xs font-medium;
+    color: #315C3B;
     }
 
     .nav-link {
-        @apply active:bg-slate-900 hover:bg-slate-100/10 text-slate-100 px-3 py-1 rounded-lg;
+    @apply text-slate-700 px-4 py-2 rounded-full transition font-medium;
     }
 
-    .title {
-        @apply text-3xl mb-4 font-bold;
+    .nav-link:hover {
+        color: #315C3B;
+        background-color: #EEF5EF;
     }
 
-    .btn {
-        @apply relative enabled:bg-slate-800 enabled:active:bg-slate-900 enabled:hover:bg-slate-700 p-2 rounded-md text-white block w-full disabled:bg-slate-500 disabled:cursor-wait;
-    }
-
-    .error {
-        @apply text-xs text-red-500 mt-px;
-    }
-
-    .input {
-        @apply block w-full p-2 rounded-md ring-1 ring-slate-600 focus:ring-slate-900 focus:ring-2 outline-0 border-0 mt-1;
-    }
-
-    label {
-        @apply text-sm text-slate-600;
-    }
-
-    .card {
-        @apply bg-white p-6 rounded-lg shadow-lg border border-slate-200;
+    .round-btn {
+        @apply w-10 h-10 overflow-hidden rounded-full bg-white shadow-md ring-1 ring-slate-200 hover:ring-blue-300 transition focus:outline-none focus:ring-2 focus:ring-blue-300;
     }
 
     .username {
-        @apply py-2 pl-4 border-b border-slate-200 text-xs text-slate-700;
+        @apply px-4 py-3 border-b border-slate-200 text-sm text-slate-700 text-center font-semibold;
+    }
+
+    /*
+    Page Headings / Hero
+    */
+
+    .hero-panel {
+    @apply bg-white rounded-3xl shadow-sm border border-slate-200 px-8 py-14 mb-10 text-center;
+    }
+
+    .hero-icon {
+    @apply mx-auto mb-6 w-16 h-16 rounded-3xl bg-gradient-to-br from-white to-stone-50 shadow-md ring-1 ring-slate-200 grid place-items-center;
+    color: #315C3B;
+    }
+    .hero-ampersand {
+    @apply font-serif text-4xl font-bold leading-none;
+    }
+
+    .hero-title {
+        @apply text-4xl md:text-5xl font-extrabold text-slate-950 mb-3;
+    }
+
+    .hero-subtitle {
+    @apply inline-block text-lg md:text-xl font-semibold px-5 py-2 rounded-full mb-5;
+    color: #315C3B;
+    background-color: #EEF5EF;
+    }
+
+    
+
+    .title {
+        @apply text-3xl md:text-4xl mb-3 font-extrabold text-slate-950;
+    }
+
+    .page-subtitle {
+        @apply text-base text-slate-600 mb-6 leading-7;
+    }
+
+    .section-heading {
+        @apply mb-6;
+    }
+
+    /*
+    Cards / Forms / Buttons
+    
+    */
+
+    .card {
+        @apply bg-white p-6 rounded-3xl shadow-sm border border-slate-200;
+    }
+
+    .btn {
+        @apply relative enabled:bg-slate-900 enabled:hover:bg-blue-800 enabled:active:bg-blue-900 p-3 rounded-xl text-white block w-full font-semibold shadow-sm disabled:bg-slate-400 disabled:cursor-wait transition;
+    }
+
+    .btn-secondary {
+    @apply px-4 py-2 rounded-xl font-semibold transition;
+    color: #315C3B;
+    background-color: #EEF5EF;
+    }
+
+    .btn-secondary:hover {
+        background-color: #E1EDE3;
+    }
+
+    .input {
+        @apply block w-full p-3 rounded-xl ring-1 ring-slate-300 focus:ring-blue-500 focus:ring-2 outline-0 border-0 mt-1 bg-white transition;
+    }
+
+    label {
+        @apply text-sm text-slate-700 font-medium;
+    }
+
+    .error {
+        @apply text-xs text-red-500 mt-1 font-medium;
+    }
+
+    .success {
+        @apply text-sm font-medium text-white bg-green-600 px-3 py-2 rounded-xl mb-3;
+    }
+
+    /*
+    Posts / Images
+    
+    */
+
+    .post-grid {
+        @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+    }
+
+    .post-image {
+        @apply w-full h-56 object-cover rounded-2xl mb-4;
+    }
+
+    .post-meta {
+        @apply text-xs text-slate-500 mb-3;
+    }
+
+   .post-link {
+    @apply font-medium transition;
+    color: #315C3B;
+    }
+
+    .post-link:hover {
+        color: #24472E;
+    }
+
+    .action-link {
+        @apply inline-block px-3 py-2 text-xs font-semibold rounded-xl transition;
+    }
+
+    .action-update {
+        @apply bg-blue-50 text-blue-700 hover:bg-blue-100;
+    }
+
+    .action-delete {
+        @apply bg-red-50 text-red-600 hover:bg-red-100;
     }
 }

@@ -1,11 +1,17 @@
 <x-layout>
-    <h1 class="title">
-        {{ $user->username }}'s Posts — {{ $posts->total() }}
-    </h1>
+    <div class="section-heading">
+        <h1 class="title">
+            {{ $user->username }}'s Inspirations
+        </h1>
 
-    <div class="grid grid-cols-2 gap-6">
+        <p class="page-subtitle">
+            {{ $posts->total() }} saved thoughts, ideas, and moments.
+        </p>
+    </div>
+
+    <div class="post-grid">
         @foreach ($posts as $post)
-            <x-postCard :post="$post" />
+            <x-post-card :post="$post" />
         @endforeach
     </div>
 

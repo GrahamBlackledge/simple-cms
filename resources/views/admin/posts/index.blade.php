@@ -6,7 +6,7 @@
     <h1 class="title">Manage Posts</h1>
 
     @if (session('success'))
-        <x-flashMsg msg="{{ session('success') }}" />
+        <x-flash-msg msg="{{ session('success') }}" />
     @endif
 
     <div class="card overflow-x-auto">

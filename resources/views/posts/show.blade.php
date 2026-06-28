@@ -3,5 +3,5 @@
         &larr; Back to posts
     </a>
 
-    <x-postCard :post="$post" full />
+    <x-post-card :post="$post" full />
 </x-layout>

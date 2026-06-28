@@ -1,5 +1,10 @@
 <x-layout>
+    <div class="section-heading text-center">
     <h1 class="title">Welcome back</h1>
+    <p class="page-subtitle">
+        Sign in and continue collecting what inspires you.
+    </p>
+</div>
 
     <div class="mx-auto max-w-screen-sm card">
         <form action="{{ route('login') }}" method="post">

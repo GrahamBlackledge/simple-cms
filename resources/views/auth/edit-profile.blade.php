@@ -3,7 +3,7 @@
 
     <div class="mx-auto max-w-screen-sm card">
         @if (session('success'))
-            <x-flashMsg msg="{{ session('success') }}" />
+            <x-flash-msg msg="{{ session('success') }}" />
         @endif
 
         <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data">

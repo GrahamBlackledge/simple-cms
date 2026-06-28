@@ -1,9 +1,17 @@
 <x-layout>
-    <h1 class="title">Latest Posts</h1>
+    <x-brand-hero />
 
-    <div class="grid grid-cols-2 gap-6">
+    <div class="section-heading">
+        <h2 class="title">Latest Inspirations</h2>
+
+        <p class="page-subtitle">
+            Browse recent thoughts, images, and moments shared by the Life Post community.
+        </p>
+    </div>
+
+    <div class="post-grid">
         @foreach ($posts as $post)
-            <x-postCard :post="$post" />
+            <x-post-card :post="$post" />
         @endforeach
     </div>
 

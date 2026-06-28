@@ -4,15 +4,25 @@
     <meta charset="UTF-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ env('APP_NAME') }}</title>
+
+    <title>{{ env('APP_NAME', 'Life Post') }}</title>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="bg-slate-100 text-slate-900">
-    <header class="bg-slate-800 shadow-lg">
+<body class="bg-gradient-to-br from-stone-50 via-white to-blue-50 text-slate-950 min-h-screen">
+    <header class="site-header">
         <nav>
-            <a href="{{ route('posts.index') }}" class="nav-link">Home</a>
+            <a href="{{ route('posts.index') }}" class="brand-link">
+                <span class="brand-mark">&amp;</span>
+
+                <span class="brand-text">
+                    <span class="brand-name">Life Post</span>
+                    <span class="brand-tagline">Remember what inspires you.</span>
+                </span>
+            </a>
 
             @auth
                 <div class="relative grid place-items-center" x-data="{ open: false }">
@@ -20,40 +30,46 @@
                         <img
                             src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('img/avatar5.png') }}"
                             alt="profile"
-                            class="w-8 h-8 rounded-full object-cover"
+                            class="w-full h-full object-cover"
                         >
                     </button>
 
                     <div
+                        x-cloak
                         x-show="open"
                         @click.outside="open = false"
-                        class="bg-white shadow-lg absolute top-10 right-0 rounded-lg overflow-hidden font-light min-w-[180px] z-50"
+                        class="bg-white shadow-lg absolute top-12 right-0 rounded-2xl overflow-hidden font-light min-w-[190px] z-50 border border-slate-200"
                     >
-                        <p class="px-4 py-2 text-sm text-gray-700 border-b text-center font-semibold">
-                            {{ auth()->user()->username }}
-                        </p>
+                        <p class="username">{{ auth()->user()->username }}</p>
 
-                        @if(auth()->user()->role === 'admin')
-                            <a href="{{ route('admin.dashboard') }}" class="block hover:bg-slate-100 px-4 py-2">
+                        @if (Route::has('admin.dashboard') && auth()->user()->role === 'admin')
+                            <a href="{{ route('admin.dashboard') }}" class="block hover:bg-blue-50 px-4 py-2">
                                 Admin Panel
                             </a>
                         @endif
 
-                        <a href="{{ route('dashboard') }}" class="block hover:bg-slate-100 px-4 py-2">
-                            Dashboard
-                        </a>
+                        @if (Route::has('dashboard'))
+                            <a href="{{ route('dashboard') }}" class="block hover:bg-blue-50 px-4 py-2">
+                                Dashboard
+                            </a>
+                        @endif
 
-                        <a href="{{ route('cms-app') }}" class="block hover:bg-slate-100 px-4 py-2">
-                            JS CMS App
-                        </a>
+                        @if (Route::has('cms-app'))
+                            <a href="{{ route('cms-app') }}" class="block hover:bg-blue-50 px-4 py-2">
+                                JS CMS App
+                            </a>
+                        @endif
 
-                        <a href="{{ route('profile.edit') }}" class="block hover:bg-slate-100 px-4 py-2">
-                            Edit Profile
-                        </a>
+                        @if (Route::has('profile.edit'))
+                            <a href="{{ route('profile.edit') }}" class="block hover:bg-blue-50 px-4 py-2">
+                                Edit Profile
+                            </a>
+                        @endif
 
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
-                            <button class="block w-full text-left hover:bg-slate-100 pl-4 pr-8 py-2">
+
+                            <button class="block w-full text-left hover:bg-red-50 text-red-600 pl-4 pr-8 py-2">
                                 Logout
                             </button>
                         </form>
@@ -62,16 +78,22 @@
             @endauth
 
             @guest
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3">
                     <a href="{{ route('login') }}" class="nav-link">Login</a>
-                    <a href="{{ route('register') }}" class="nav-link">Register</a>
+                    <a href="{{ route('register') }}" class="btn-secondary">Register</a>
                 </div>
             @endguest
         </nav>
     </header>
 
-    <main class="py-8 px-4 mx-auto max-w-screen-lg">
+    <main class="py-10 px-4 mx-auto max-w-screen-xl">
         {{ $slot }}
     </main>
+    <footer class="py-8 px-4 text-center text-sm text-slate-500">
+    <p>
+        <span class="font-semibold text-slate-700">Life Post</span>
+        &mdash; Remember what inspires you.
+    </p>
+</footer>
 </body>
 </html>

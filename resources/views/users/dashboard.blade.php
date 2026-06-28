@@ -1,22 +1,25 @@
 <x-layout>
-    <h1 class="title">
-        Welcome {{ auth()->user()->username }}, you have {{ $posts->total() }} posts
-    </h1>
+    <div class="section-heading">
+        <h1 class="title">Welcome back, {{ auth()->user()->username }}</h1>
+            <p class="page-subtitle">
+                Capture a new thought, image, or idea that inspired you today.
+            </p>
+    </div>
 
     <div class="card mb-6">
-        <h2 class="font-bold mb-4">Create a new post</h2>
+        <h2 class="font-bold mb-4">Capture a new inspiration</h2>
 
         @if (session('success'))
-            <x-flashMsg msg="{{ session('success') }}" />
+            <<x-flash-msg msg="{{ session('success') }}" />
         @elseif (session('delete'))
-            <x-flashMsg msg="{{ session('delete') }}" bg="bg-red-500" />
+            <x-flash-msg msg="{{ session('delete') }}" bg="bg-red-500" />
         @endif
 
         <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-4">
-                <label for="title">Post Title</label>
+                <label for="title">Title</label>
                 <input
                     type="text"
                     name="title"
@@ -30,7 +33,7 @@
             </div>
 
             <div class="mb-4">
-                <label for="body">Post Content</label>
+                <label for="body">Reflection</label>
                 <textarea
                     name="body"
                     rows="5"
@@ -43,12 +46,16 @@
             </div>
 
             <div class="mb-4">
-                <label for="filter">Filter</label>
+                <label for="filter">Category</label>
+
                 <select name="filter" class="input">
-                    <option value="">No filter</option>
-                    <option value="warm">Warm</option>
-                    <option value="cool">Cool</option>
-                    <option value="black-white">Black and white</option>
+                    <option value="">No category</option>
+                    <option value="quote">Quote</option>
+                    <option value="reflection">Reflection</option>
+                    <option value="goal">Goal</option>
+                    <option value="memory">Memory</option>
+                    <option value="idea">Idea</option>
+                    <option value="lesson">Lesson</option>
                 </select>
             </div>
 
@@ -61,15 +68,15 @@
                 @enderror
             </div>
 
-            <button class="btn">Create</button>
+            <button class="btn">Save Inspiration</button>
         </form>
     </div>
 
-    <h2 class="font-bold mb-4">Your Latest Posts</h2>
+    <h2 class="font-bold mb-4">Your Saved Inspirations</h2>
 
     <div class="grid grid-cols-2 gap-6">
         @foreach ($posts as $post)
-            <x-postCard :post="$post">
+            <x-post-card :post="$post">
                 <a
                     href="{{ route('posts.edit', $post) }}"
                     class="bg-green-500 text-white px-2 py-1 text-xs rounded-md"
@@ -85,7 +92,7 @@
                         Delete
                     </button>
                 </form>
-            </x-postCard>
+            </x-post-card>
         @endforeach
     </div>
 

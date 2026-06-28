@@ -4,14 +4,14 @@
     </a>
 
     <div class="card">
-        <h1 class="title">Update your post</h1>
+        <h1 class="title">Update your inspiration</h1>
 
         <form action="{{ route('posts.update', $post) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
             <div class="mb-4">
-                <label for="title">Post Title</label>
+                <label for="title">Title</label>
                 <input
                     type="text"
                     name="title"
@@ -25,7 +25,7 @@
             </div>
 
             <div class="mb-4">
-                <label for="body">Post Content</label>
+                <label for="body">Reflection</label>
                 <textarea
                     name="body"
                     rows="5"
@@ -38,12 +38,16 @@
             </div>
 
             <div class="mb-4">
-                <label for="filter">Filter</label>
+                <label for="filter">Category</label>
+
                 <select name="filter" class="input">
-                    <option value="">No filter</option>
-                    <option value="warm" @selected(old('filter', $post->filter) === 'warm')>Warm</option>
-                    <option value="cool" @selected(old('filter', $post->filter) === 'cool')>Cool</option>
-                    <option value="black-white" @selected(old('filter', $post->filter) === 'black-white')>Black and white</option>
+                    <option value="">No category</option>
+                    <option value="quote" @selected(old('filter', $post->filter) === 'quote')>Quote</option>
+                    <option value="reflection" @selected(old('filter', $post->filter) === 'reflection')>Reflection</option>
+                    <option value="goal" @selected(old('filter', $post->filter) === 'goal')>Goal</option>
+                    <option value="memory" @selected(old('filter', $post->filter) === 'memory')>Memory</option>
+                    <option value="idea" @selected(old('filter', $post->filter) === 'idea')>Idea</option>
+                    <option value="lesson" @selected(old('filter', $post->filter) === 'lesson')>Lesson</option>
                 </select>
             </div>
 

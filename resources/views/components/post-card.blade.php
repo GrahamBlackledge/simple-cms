@@ -11,13 +11,13 @@
         <img
             src="{{ asset('storage/' . $post->image) }}"
             alt="Post image"
-            class="post-image"
+            class="{{ $full ? 'post-image-full' : 'post-image' }}"
         >
     @else
         <img
             src="{{ asset('img/avatar5.png') }}"
             alt="Default post image"
-            class="post-image"
+            class="{{ $full ? 'post-image-full' : 'post-image' }}"
         >
     @endif
 
